@@ -1,0 +1,35 @@
+{
+  "name": "mimosa-server-compile-template",
+  "preferGlobal": "false",
+  "version": "0.1.0",
+  "homepage": "https://github.com/dbashford/mimosa-server-template-compile",
+  "author": "David Bashford",
+  "description": "A mimosa module for compiling server templates as part of a build",
+  "contributors": [
+    {
+      "name": "David Bashford",
+      "email": "dbashford@hotmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dbashford/mimosa-server-template-compile"
+  },
+  "keywords": [
+    "mimosa",
+    "mmodule",
+    "jade",
+    "ejs",
+    "handlebars",
+    "hogan",
+    "template",
+    "compile"
+  ],
+  "dependencies": {
+    "logmimosa": "0.2.1"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.8"
+  }
+}
