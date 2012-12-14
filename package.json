@@ -26,7 +26,8 @@
     "compile"
   ],
   "dependencies": {
-    "logmimosa": "0.2.1"
+    "logmimosa": "0.2.1",
+    "lodash":"1.0.0-rc.2"
   },
   "license": "MIT",
   "engines": {
