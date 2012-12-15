@@ -115,7 +115,7 @@ exports.validate = (config) ->
       defaultLocals =
         title:     "Mimosa"
         reload:    false
-        optimize:  config.isBuild
+        optimize:  config.isOptimize
         cachebust: "?b=#{version}"
 
       if config.serverTemplate.locals?
