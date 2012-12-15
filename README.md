@@ -53,7 +53,7 @@ serverTemplate:
 * `locals.title`: a string, defaults to `Mimosa`.  If you are using `title` in your views, you'll like want to change this away from `Mimosa`
 * `locals.reload`: a boolean, defaults to `false`.  It doesn't much sense to use live reload as part of a build, so this is set to false. If you are not using `mimosa-live-reload`, this setting has no effect.
 * `locals.optimize`: a boolean, defaults to the whether or not the `--optimize` flag is used as part of the build.  If the flag is used, this setting is `true`.
-* `locals.cachebust`: a string, the string to tack onto asset urls in the compiled `.html`.  By default this is set to `?` followed by the value of the project's package.json version property.  If that does not exist, it is set to an empty string. Often when building and deploying an app, you want to cachebust the assets, but only for each version of the application that gets deployed rather than with every load of the page.  This accomplishes that.
+* `locals.cachebust`: a string, the string to tack onto asset urls in the compiled `.html`.  By default this is set to `?b=` followed by the value of the project's package.json version property.  If that does not exist, it is set to an empty string. Often when building and deploying an app, you want to cachebust the assets, but only for each version of the application that gets deployed rather than with every load of the page.  This accomplishes that.
 
 The derived settings above are assumed, making the actual `mimosa-config` defaults the following:
 
