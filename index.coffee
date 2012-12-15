@@ -28,7 +28,8 @@ _compileTemplates = (mimosaConfig, options, next) ->
 
   i = 0
   done = ->
-    next() if ++i is compileFiles.length
+    if ++i is compileFiles.length
+      next()
 
   compileFiles.forEach (f) ->
     locals = __getLocals st, f
@@ -54,7 +55,9 @@ __getLocals = (st, f) ->
   _.clone(locals, true)
 
 __writeOutputFile = (st, f, html, cb) ->
+
   outFileName = path.join(st.outPath, f.replace(st.inPath, ""))
+  outFileName = outFileName.replace(path.extname(outFileName), ".html")
 
   dirname = path.dirname outFileName
   fs.exists dirname, (exists) ->
@@ -62,12 +65,11 @@ __writeOutputFile = (st, f, html, cb) ->
       logger.debug "server-template-compile making directory [[ #{dirname} ]]"
       wrench.mkdirSyncRecursive dirname, 0o0777
 
-    fs.writeFileSync outFileName, html, "utf8", (err) ->
+    fs.writeFile outFileName, html, "utf8", (err) ->
       if err
         logger.error "Error writing [[ #{outFileName} ]]"
       else
-        logger.debug "server-template-compile wrote file [[ #{outFileName} ]]"
-
+        logger.success "server-template-compile wrote file [[ #{outFileName} ]]"
       cb()
 
 module.exports =
