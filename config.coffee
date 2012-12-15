@@ -116,7 +116,7 @@ exports.validate = (config) ->
         title:     "Mimosa"
         reload:    false
         optimize:  config.isBuild
-        cachebust: version
+        cachebust: "?#{version}"
 
       if config.serverTemplate.locals?
         if typeof config.serverTemplate.locals is "object" and not Array.isArray(config.serverTemplate.locals)
