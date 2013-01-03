@@ -24,6 +24,8 @@ The server template languages supported by Mimosa are supported by this module. 
 
 This module replaces the old `--jade` flag that was a part of `mimosa build` pre version 0.7.0.
 
+This module will also clean up after itself, removing any templates it has compiled when you run a `clean` command.
+
 ## Default Config
 
 The default config for this module is almost entirely derived from other settings and properties in a project.  Some are from other Mimosa module settings, some from flags used during `mimosa build`, others from the project's package.json.  Those settings are indicated below after an arrow `=>`.

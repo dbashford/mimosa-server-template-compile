@@ -14,16 +14,11 @@ registration = (mimosaConfig, register) ->
   if mimosaConfig.isBuild
     register ['postBuild'], 'beforePackage', _compileTemplates
 
+  register ['preClean'], 'init', _clean
+
 _compileTemplates = (mimosaConfig, options, next) ->
-
   st = mimosaConfig.serverTemplate
-
-  allFiles = wrench.readdirSyncRecursive(st.inPath).map (f) -> path.join st.inPath, f
-  compileFiles = allFiles.filter (f) -> st.exclude.indexOf(f) is -1
-  compileFiles = compileFiles.filter (f) -> path.extname(f) is ".#{st.extension}"
-
-  logger.debug "server-template-compile will be compiling the following templates: #{compileFiles.join('\n')}"
-
+  compileFiles = __genCompileFiles st
   return next() unless compileFiles?.length > 0
 
   i = 0
@@ -41,6 +36,26 @@ _compileTemplates = (mimosaConfig, options, next) ->
       else
         __writeOutputFile st, f, html, done
 
+_clean = (mimosaConfig, options, next) ->
+  st = mimosaConfig.serverTemplate
+  compileFiles = __genCompileFiles st
+  return next() unless compileFiles?.length > 0
+
+  i = 0
+  done = ->
+    if ++i is compileFiles.length
+      next()
+
+  compileFiles.forEach (f) ->
+    outFileName = __genOutFileName st.outPath, st.inPath, f
+    fs.exists outFileName, (exists) ->
+      if exists
+        fs.unlink outFileName, ->
+          logger.success "Deleted compiled template [[ #{outFileName} ]]"
+          done()
+      else
+        done()
+
 __getLocals = (st, f) ->
   locals = if st.views?
     locs = st.locals
@@ -55,10 +70,7 @@ __getLocals = (st, f) ->
   _.clone(locals, true)
 
 __writeOutputFile = (st, f, html, cb) ->
-
-  outFileName = path.join(st.outPath, f.replace(st.inPath, ""))
-  outFileName = outFileName.replace(path.extname(outFileName), ".html")
-
+  outFileName = __genOutFileName st.outPath, st.inPath, f
   dirname = path.dirname outFileName
   fs.exists dirname, (exists) ->
     unless exists
@@ -71,6 +83,15 @@ __writeOutputFile = (st, f, html, cb) ->
       else
         logger.success "server-template-compile wrote file [[ #{outFileName} ]]"
       cb()
+
+__genCompileFiles = (config) ->
+  allFiles = wrench.readdirSyncRecursive(config.inPath).map (f) -> path.join config.inPath, f
+  compileFiles = allFiles.filter (f) -> config.exclude.indexOf(f) is -1
+  compileFiles = compileFiles.filter (f) -> path.extname(f) is ".#{config.extension}"
+
+__genOutFileName = (outPath, inPath, f) ->
+  outFileName = path.join(outPath, f.replace(inPath, ""))
+  outFileName.replace(path.extname(outFileName), ".html")
 
 module.exports =
   registration: registration
