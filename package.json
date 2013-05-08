@@ -1,6 +1,6 @@
 {
   "name": "mimosa-server-template-compile",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "homepage": "https://github.com/dbashford/mimosa-server-template-compile",
   "author": "David Bashford",
   "description": "A mimosa module for compiling server templates as part of a build",
@@ -25,13 +25,17 @@
     "compile"
   ],
   "dependencies": {
-    "logmimosa": "0.4.0",
-    "lodash":"1.0.0-rc.3",
-    "wrench":"1.4.4",
-    "consolidate":"0.8.0"
+    "logmimosa": "0.5.0",
+    "lodash":"1.2.1",
+    "wrench":"1.5.1",
+    "consolidate":"0.9.1"
   },
   "license": "MIT",
   "engines": {
     "node": ">=0.8"
+  },
+  "main": "./lib/index",
+  "scripts": {
+    "prepublish": "mimosa build"
   }
 }
