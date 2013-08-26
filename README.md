@@ -5,7 +5,7 @@ mimosa-server-template-compile
 
 This Mimosa module will find and compile server templates as part of a Mimosa build.
 
-For more information regarding Mimosa, see http://mimosajs.com
+For more information regarding Mimosa, see http://mimosa.io
 
 ## Usage
 
