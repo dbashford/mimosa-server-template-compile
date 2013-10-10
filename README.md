@@ -11,8 +11,6 @@ For more information regarding Mimosa, see http://mimosa.io
 
 Add `'server-template-compile'` to your list of modules.  That's all!  Mimosa will install the module for you when you start up.
 
-You also need to have installed in your project the library for the language you want to compile.  This module does not come packed with all the possible libraries.  In most cases this is fine because if you are using, for instance, jade templates, you probably have included jade in your project.  But if you have not, you'll need to `npm install jade` inside your project.
-
 ## Functionality
 
 This module will, as part of a `mimosa build`, compile your dynamic templates into `.html` files.  Use this module if you want to take advantage of Mimosa's serving of dynamic templates, but do not intend to deploy node to your target environment and therefore cannot dynamically compile templates at runtime.  This also enables building of static websites using dynamic assets.
