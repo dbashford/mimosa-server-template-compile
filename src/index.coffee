@@ -4,13 +4,16 @@ path = require "path"
 fs = require "fs"
 
 wrench = require "wrench"
-logger = require "logmimosa"
 cons = require 'consolidate'
 _ = require "lodash"
 
 config = require './config'
 
+logger = null
+
 registration = (mimosaConfig, register) ->
+  logger = mimosaConfig.log
+
   if mimosaConfig.isBuild
     register ['postBuild'], 'beforePackage', _compileTemplates
 
