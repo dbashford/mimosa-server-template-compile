@@ -21,14 +21,14 @@ exports.placeholder = ->
     # config settings in your application. To see a complete breakdown of all the serverTemplate
     # config options (there are many), visit https://github.com/dbashford/mimosa-server-template-compile
     ###
-    # serverTemplate:
-      # exclude: ["layout.jade"]        # files to exclude from compilation
-      # locals:                         # a list of properties to pass into all the templates when
-                                      # they are compiled, the following defaults match properties
-                                      # that are used in the default 'mimosa new' projects
-        # title: "Mimosa"               # title of the page
-        # reload: false                 # flag for whether or not to include live reload, which does
-                                      # not make sense for compiled templates
+    serverTemplate:
+      exclude: ["layout.jade"]     # files to exclude from compilation
+      locals:                      # a list of properties to pass into all the templates when
+                                   # they are compiled, the following defaults match properties
+                                   # that are used in the default 'mimosa new' projects
+        title: "Mimosa"            # title of the page
+        reload: false              # flag for whether or not to include live reload, which does
+                                   # not make sense for compiled templates
 
   """
 

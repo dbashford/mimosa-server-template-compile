@@ -1,6 +1,6 @@
 {
   "name": "mimosa-server-template-compile",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "homepage": "https://github.com/dbashford/mimosa-server-template-compile",
   "author": "David Bashford",
   "description": "A mimosa module for compiling server templates as part of a build",
