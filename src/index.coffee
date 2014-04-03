@@ -6,6 +6,7 @@ fs = require "fs"
 wrench = require "wrench"
 cons = require 'consolidate'
 _ = require "lodash"
+pretty = require("html").prettyPrint
 
 config = require './config'
 
@@ -37,6 +38,8 @@ _compileTemplates = (mimosaConfig, options, next) ->
         logger.error "Compilation failed on file [[ #{f} ]]:\n#{err}"
         done()
       else
+        unless mimosaConfig.isMinify or mimosaConfig.isOptimize
+          html = pretty html
         __writeOutputFile st, f, html, done
 
 _clean = (mimosaConfig, options, next) ->
